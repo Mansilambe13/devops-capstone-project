@@ -25,3 +25,25 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+
+    steps:
+      # Step to check out the code
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Step to install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
+
+      # Step for linting (optional)
+      - name: Lint Code
+        run: |
+          pip install flake8  # or your preferred linter
+          flake8 .  # Lint the entire repository
+
+      # Step for unit testing (optional)
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s tests  # Adjust according to your test structure
