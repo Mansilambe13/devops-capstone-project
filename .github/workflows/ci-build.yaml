@@ -37,11 +37,11 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install -r requirements.txt
 
-      # Step for linting (optional)
-      - name: Lint Code
+      # Step for linting with flake8
+      - name: Lint with flake8
         run: |
-          pip install flake8  # or your preferred linter
-          flake8 .  # Lint the entire repository
+          flake8 service --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 service --count --max-complexity=10 --max-line-length=127 --statistics
 
       # Step for unit testing (optional)
       - name: Run Unit Tests
